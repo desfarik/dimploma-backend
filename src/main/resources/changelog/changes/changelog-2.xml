@@ -1,0 +1,132 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="dima" id="21.43">
+        <createTable tableName="calendar">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="integer"/>
+            <column name="data" type="jsonb"/>
+        </createTable>
+        <addUniqueConstraint columnNames="id"
+                             deferrable="true"
+                             disabled="true"
+                             constraintName="calendar_id"
+                             initiallyDeferred="true"
+                             schemaName="public"
+                             tableName="calendar"/>
+        <addUniqueConstraint columnNames="user_id"
+                             deferrable="true"
+                             disabled="true"
+                             constraintName="calendar_user_id"
+                             initiallyDeferred="true"
+                             schemaName="public"
+                             tableName="calendar"/>
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="calendar"
+                                 constraintName="fk_calendar_user_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_credentials"/>
+    </changeSet>
+
+    <changeSet author="dima" id="21.54">
+        <createTable tableName="calendar_last_update">
+            <column name="calendar_id" type="integer"/>
+            <column name="date" type="date"/>
+        </createTable>
+        <addUniqueConstraint columnNames="calendar_id"
+                             deferrable="true"
+                             disabled="true"
+                             constraintName="update_calendar_id"
+                             initiallyDeferred="true"
+                             schemaName="public"
+                             tableName="calendar_last_update"/>
+        <addForeignKeyConstraint baseColumnNames="calendar_id"
+                                 baseTableName="calendar_last_update"
+                                 constraintName="fk_update_calendar_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="calendar"/>
+    </changeSet>
+
+    <changeSet author="dima" id="22.00">
+        <insert tableName="user_credentials">
+            <column name="id" value="2"/>
+            <column name="email" value="patient_1"/>
+            <column name="password" value="test"/>
+            <column name="phone" value="124"/>
+            <column name="country_code" value="123"/>
+            <column name="role" value="2"/>
+        </insert>
+        <insert tableName="user_credentials">
+            <column name="id" value="3"/>
+            <column name="email" value="patient_2"/>
+            <column name="password" value="test"/>
+            <column name="phone" value="124"/>
+            <column name="country_code" value="123"/>
+            <column name="role" value="2"/>
+        </insert>
+        <createTable tableName="user_relations">
+            <column name="doctor_id" type="integer"/>
+            <column name="patient_id" type="integer"/>
+        </createTable>
+        <addUniqueConstraint columnNames="doctor_id, patient_id"
+                             deferrable="true"
+                             disabled="true"
+                             constraintName="fk_user_relations"
+                             initiallyDeferred="true"
+                             schemaName="public"
+                             tableName="user_relations"/>
+        <addForeignKeyConstraint baseColumnNames="doctor_id"
+                                 baseTableName="user_relations"
+                                 constraintName="fk_doctor_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_credentials"/>
+        <addForeignKeyConstraint baseColumnNames="patient_id"
+                                 baseTableName="user_relations"
+                                 constraintName="fk_patient_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_credentials"/>
+    </changeSet>
+    <changeSet id="22:17" author="dima">
+        <insert tableName="user_relations">
+            <column name="doctor_id" value="1"/>
+            <column name="patient_id" value="2"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="22:22" author="dima">
+        <createTable tableName="temporary_patient_keys">
+            <column name="patient_id" type="integer"/>
+            <column name="key" type="varchar(50)"/>
+        </createTable>
+        <addUniqueConstraint columnNames="patient_id, key"
+                             deferrable="true"
+                             disabled="true"
+                             constraintName="fk_temporary_patient_keys"
+                             initiallyDeferred="true"
+                             schemaName="public"
+                             tableName="temporary_patient_keys"/>
+        <addForeignKeyConstraint baseColumnNames="patient_id"
+                                 baseTableName="temporary_patient_keys"
+                                 constraintName="fk_temporary_patient_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_credentials"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,93 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="dima" id="01.05.2018:20.43">
+        <createTable tableName="user_credentials">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(50)"/>
+            <column name="password" type="varchar(255)"/>
+            <column name="phone" type="varchar(50)"/>
+            <column name="country_code" type="varchar(50)"/>
+            <column name="role" type="integer"/>
+        </createTable>
+        <addUniqueConstraint columnNames="id"
+                             deferrable="true"
+                             disabled="true"
+                             constraintName="user_id"
+                             initiallyDeferred="true"
+                             schemaName="public"
+                             tableName="user_credentials"/>
+    </changeSet>
+
+    <changeSet author="dima" id="01.05.2018:20.46">
+        <createTable tableName="role_types">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="role" type="varchar(50)"/>
+        </createTable>
+        <addUniqueConstraint columnNames="id"
+                             constraintName="role_id"
+                             deferrable="true"
+                             disabled="true"
+                             initiallyDeferred="true"
+                             schemaName="public"
+                             tableName="role_types"/>
+        <addForeignKeyConstraint baseColumnNames="role"
+                                 baseTableName="user_credentials"
+                                 constraintName="role_id"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="role_types"/>
+    </changeSet>
+    <changeSet id="01.05.2018:21.16" author="dima">
+        <insert tableName="role_types">
+            <column name="role" value="DOCTOR"/>
+            <column name="id" value="1"/>
+        </insert>
+        <insert tableName="role_types">
+            <column name="role" value="PATIENT"/>
+            <column name="id" value="2"/>
+        </insert>
+        <insert tableName="user_credentials">
+            <column name="email" value="test"/>
+            <column name="password" value="test"/>
+            <column name="phone" value="124"/>
+            <column name="country_code" value="123"/>
+            <column name="role" value="1"/>
+            <column name="id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="21.20" author="dima">
+        <createTable tableName="user_details">
+            <column name="user_id" type="integer"/>
+            <column name="first_name" type="varchar(50)"/>
+            <column name="last_name" type="varchar(50)"/>
+            <column name="details" type="jsonb"/>
+        </createTable>
+        <addUniqueConstraint columnNames="user_id"
+                             deferrable="true"
+                             disabled="true"
+                             constraintName="fk_user_id"
+                             initiallyDeferred="true"
+                             schemaName="public"
+                             tableName="user_details"/>
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="user_details"
+                                 constraintName="fk_user_details_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_credentials"/>
+    </changeSet>
+
+</databaseChangeLog>
