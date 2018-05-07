@@ -1,4 +1,4 @@
-package com.medical.area.public_area.models;
+package com.medical_area.public_area.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

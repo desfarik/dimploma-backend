@@ -1,4 +1,4 @@
-package com.medical.area;
+package com.medical_area;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

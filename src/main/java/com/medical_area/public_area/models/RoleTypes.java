@@ -1,4 +1,4 @@
-package com.medical.area.public_area.models;
+package com.medical_area.public_area.models;
 
 public class RoleTypes {
     public static final Integer DOCTOR = 1;

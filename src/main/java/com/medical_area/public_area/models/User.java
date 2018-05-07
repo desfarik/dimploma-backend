@@ -1,4 +1,4 @@
-package com.medical.area.public_area.models;
+package com.medical_area.public_area.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

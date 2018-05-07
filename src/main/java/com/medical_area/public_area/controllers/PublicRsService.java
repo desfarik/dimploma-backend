@@ -1,11 +1,11 @@
-package com.medical.area.public_area.controllers;
+package com.medical_area.public_area.controllers;
 
-import com.medical.area.public_area.controllers.requests.PhoneVerificationStartRequest;
-import com.medical.area.public_area.controllers.requests.UserRegisterRequest;
-import com.medical.area.public_area.services.PhoneVerificationService;
-import com.medical.area.public_area.services.RegisterService;
-import com.medical.area.public_area.controllers.requests.ResetPasswordRequest;
-import com.medical.area.public_area.services.ResetService;
+import com.medical_area.public_area.controllers.requests.PhoneVerificationStartRequest;
+import com.medical_area.public_area.controllers.requests.UserRegisterRequest;
+import com.medical_area.public_area.services.PhoneVerificationService;
+import com.medical_area.public_area.services.RegisterService;
+import com.medical_area.public_area.controllers.requests.ResetPasswordRequest;
+import com.medical_area.public_area.services.ResetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;

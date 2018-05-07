@@ -1,4 +1,4 @@
-package com.medical.area.public_area.controllers.requests;
+package com.medical_area.public_area.controllers.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

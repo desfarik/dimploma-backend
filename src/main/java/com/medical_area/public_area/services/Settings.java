@@ -1,4 +1,4 @@
-package com.medical.area.public_area.services;
+package com.medical_area.public_area.services;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

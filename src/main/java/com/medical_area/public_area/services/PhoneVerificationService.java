@@ -1,9 +1,9 @@
-package com.medical.area.public_area.services;
+package com.medical_area.public_area.services;
 
 import com.authy.AuthyApiClient;
 import com.authy.api.Params;
 import com.authy.api.Verification;
-import com.medical.area.public_area.repositories.UserRepository;
+import com.medical_area.public_area.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,8 +1,8 @@
-package com.medical.area.public_area.services;
+package com.medical_area.public_area.services;
 
-import com.medical.area.public_area.models.CustomUserDetails;
-import com.medical.area.public_area.repositories.UserRepository;
-import com.medical.area.public_area.models.User;
+import com.medical_area.public_area.models.CustomUserDetails;
+import com.medical_area.public_area.repositories.UserRepository;
+import com.medical_area.public_area.models.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

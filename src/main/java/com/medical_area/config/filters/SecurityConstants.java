@@ -1,4 +1,4 @@
-package com.medical.area.config.filters;
+package com.medical_area.config.filters;
 
 
 public class SecurityConstants {

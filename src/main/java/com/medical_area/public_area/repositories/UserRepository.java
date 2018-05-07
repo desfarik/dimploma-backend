@@ -1,6 +1,6 @@
-package com.medical.area.public_area.repositories;
+package com.medical_area.public_area.repositories;
 
-import com.medical.area.public_area.models.User;
+import com.medical_area.public_area.models.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Integer> {

@@ -1,8 +1,8 @@
-package com.medical.area.public_area.services;
+package com.medical_area.public_area.services;
 
-import com.medical.area.public_area.controllers.requests.ResetPasswordRequest;
-import com.medical.area.public_area.models.User;
-import com.medical.area.public_area.repositories.UserRepository;
+import com.medical_area.public_area.controllers.requests.ResetPasswordRequest;
+import com.medical_area.public_area.models.User;
+import com.medical_area.public_area.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

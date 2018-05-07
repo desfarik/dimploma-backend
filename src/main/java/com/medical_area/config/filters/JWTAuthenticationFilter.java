@@ -1,8 +1,8 @@
-package com.medical.area.config.filters;
+package com.medical_area.config.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.medical.area.public_area.models.CustomUserDetails;
-import com.medical.area.public_area.models.User;
+import com.medical_area.public_area.models.CustomUserDetails;
+import com.medical_area.public_area.models.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.medical.area.config.filters.SecurityConstants.*;
+import static com.medical_area.config.filters.SecurityConstants.*;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;

@@ -1,7 +1,7 @@
-package com.medical.area.config;
+package com.medical_area.config;
 
 import com.authy.AuthyApiClient;
-import com.medical.area.public_area.services.Settings;
+import com.medical_area.public_area.services.Settings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

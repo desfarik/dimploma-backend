@@ -1,7 +1,8 @@
-package com.medical.area.config;
+package com.medical_area.config;
 
-import com.medical.area.config.filters.JWTAuthenticationFilter;
-import com.medical.area.config.filters.JWTAuthorizationFilter;
+import com.medical_area.config.filters.JWTAuthenticationFilter;
+import com.medical_area.config.filters.JWTAuthorizationFilter;
+import com.medical_area.config.filters.SecurityConstants;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,8 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-
-import static com.medical.area.config.filters.SecurityConstants.*;
 
 
 @Configuration
@@ -34,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS, LOGIN, REGISTRATION, VERIFICATION_PHONE, RESET_PASSWORD, "/swagger-ui.html").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, SecurityConstants.LOGIN, SecurityConstants.REGISTRATION, SecurityConstants.VERIFICATION_PHONE, SecurityConstants.RESET_PASSWORD, "/swagger-ui.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
