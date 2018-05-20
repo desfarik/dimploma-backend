@@ -13,7 +13,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="user_id" type="integer"/>
-            <column name="data" type="jsonb"/>
+            <column name="data" type="text"/>
         </createTable>
         <addUniqueConstraint columnNames="id"
                              deferrable="true"
@@ -77,6 +77,9 @@
             <column name="role" value="2"/>
         </insert>
         <createTable tableName="user_relations">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
             <column name="doctor_id" type="integer"/>
             <column name="patient_id" type="integer"/>
         </createTable>
@@ -111,6 +114,9 @@
 
     <changeSet id="22:22" author="dima">
         <createTable tableName="temporary_patient_keys">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
             <column name="patient_id" type="integer"/>
             <column name="key" type="varchar(50)"/>
         </createTable>

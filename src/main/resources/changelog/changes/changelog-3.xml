@@ -1,0 +1,74 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="dima" id="20 21.58">
+        <createTable tableName="patient_history">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="patient_id" type="integer"/>
+            <column name="doctor_id" type="integer"/>
+            <column name="data" type="text"/>
+        </createTable>
+        <addUniqueConstraint columnNames="doctor_id, patient_id"
+                             deferrable="true"
+                             disabled="true"
+                             constraintName="fk_patient_history"
+                             initiallyDeferred="true"
+                             schemaName="public"
+                             tableName="patient_history"/>
+        <addForeignKeyConstraint baseColumnNames="patient_id"
+                                 baseTableName="patient_history"
+                                 constraintName="fk_history_patient_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_credentials"/>
+        <addForeignKeyConstraint baseColumnNames="doctor_id"
+                                 baseTableName="patient_history"
+                                 constraintName="fk_history_doctor_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_credentials"/>
+    </changeSet>
+    <changeSet author="dima" id="20 22.10">
+        <createTable tableName="send_to_mobile">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="patient_id" type="integer"/>
+            <column name="data" type="text"/>
+            <column name="send" type="boolean"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="patient_id"
+                                 baseTableName="send_to_mobile"
+                                 constraintName="fk_send_to_mobile_patient_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_credentials"/>
+    </changeSet>
+    <changeSet author="dima" id="20 23.25">
+        <createTable tableName="patient_progress_status">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="patient_id" type="integer"/>
+            <column name="data" type="text"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="patient_id"
+                                 baseTableName="patient_progress_status"
+                                 constraintName="fk_patient_patient_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_credentials"/>
+    </changeSet>
+</databaseChangeLog>

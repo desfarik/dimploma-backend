@@ -9,6 +9,8 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     User findFirstByPhone(String phone);
 
+    User findFirstByPhoneOrUserName(String phone, String userName);
+
     boolean existsUserByUserName(String name);
 
     boolean existsUserByPhone(String phone);

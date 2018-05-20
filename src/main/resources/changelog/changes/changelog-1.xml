@@ -65,14 +65,20 @@
             <column name="role" value="1"/>
             <column name="id" value="1"/>
         </insert>
+        <insert tableName="user_credentials">
+            <column name="email" value="desfarik"/>
+            <column name="password" value="$2a$10$S5CkczX5UxTGVP007pU.q.dzIpVvIU2BeHdIVREyevtUeTwknDE2y"/>
+            <column name="phone" value="291812373"/>
+            <column name="country_code" value="375"/>
+            <column name="role" value="1"/>
+            <column name="id" value="10"/>
+        </insert>
     </changeSet>
 
     <changeSet id="21.20" author="dima">
         <createTable tableName="user_details">
             <column name="user_id" type="integer"/>
-            <column name="first_name" type="varchar(50)"/>
-            <column name="last_name" type="varchar(50)"/>
-            <column name="details" type="jsonb"/>
+            <column name="details" type="text"/>
         </createTable>
         <addUniqueConstraint columnNames="user_id"
                              deferrable="true"
