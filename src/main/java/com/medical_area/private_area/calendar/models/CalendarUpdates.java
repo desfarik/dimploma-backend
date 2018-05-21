@@ -23,5 +23,5 @@ public class CalendarUpdates {
     private Calendar calendar;
     @Id
     @Column(name = "date")
-    private Date date;
+    private String date;
 }

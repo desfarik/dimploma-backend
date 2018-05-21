@@ -7,7 +7,7 @@
    http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet author="dima" id="21.43">
+    <changeSet author="dima" id="01.05.2018:21.50">
         <createTable tableName="calendar">
             <column name="id" type="serial" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -38,7 +38,7 @@
                                  referencedTableName="user_credentials"/>
     </changeSet>
 
-    <changeSet author="dima" id="21.54">
+    <changeSet author="dima" id="01.05.2018:22:50">
         <createTable tableName="calendar_last_update">
             <column name="calendar_id" type="integer"/>
             <column name="date" type="date"/>
@@ -59,7 +59,7 @@
                                  referencedTableName="calendar"/>
     </changeSet>
 
-    <changeSet author="dima" id="22.00">
+    <changeSet author="dima" id="01.05.2018:23.43">
         <insert tableName="user_credentials">
             <column name="id" value="2"/>
             <column name="email" value="patient_1"/>
@@ -105,14 +105,14 @@
                                  referencedColumnNames="id"
                                  referencedTableName="user_credentials"/>
     </changeSet>
-    <changeSet id="22:17" author="dima">
+    <changeSet id="02.05.2018:20.43" author="dima">
         <insert tableName="user_relations">
             <column name="doctor_id" value="1"/>
             <column name="patient_id" value="2"/>
         </insert>
     </changeSet>
 
-    <changeSet id="22:22" author="dima">
+    <changeSet id="01.05.2018:21.43" author="dima">
         <createTable tableName="temporary_patient_keys">
             <column name="id" type="serial" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>

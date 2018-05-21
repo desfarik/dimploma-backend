@@ -7,7 +7,7 @@
    http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet author="dima" id="20 21.58">
+    <changeSet author="dima" id="20.05.2018 20.43">
         <createTable tableName="patient_history">
             <column name="id" type="serial" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -38,7 +38,7 @@
                                  referencedColumnNames="id"
                                  referencedTableName="user_credentials"/>
     </changeSet>
-    <changeSet author="dima" id="20 22.10">
+    <changeSet author="dima" id="20.05.2018 21.43">
         <createTable tableName="send_to_mobile">
             <column name="id" type="serial" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -55,7 +55,7 @@
                                  referencedColumnNames="id"
                                  referencedTableName="user_credentials"/>
     </changeSet>
-    <changeSet author="dima" id="20 23.25">
+    <changeSet author="dima" id="20.05.2018 22.43">
         <createTable tableName="patient_progress_status">
             <column name="id" type="serial" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>

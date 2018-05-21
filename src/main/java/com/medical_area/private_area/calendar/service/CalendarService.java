@@ -5,6 +5,7 @@ import com.medical_area.private_area.calendar.models.Calendar;
 import com.medical_area.private_area.calendar.models.CalendarUpdates;
 import com.medical_area.private_area.calendar.repositories.CalendarRepository;
 import com.medical_area.private_area.calendar.repositories.CalendarUpdatesRepository;
+import com.medical_area.private_area.common.service.ToastService;
 import com.medical_area.private_area.common.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.P;
@@ -22,6 +23,8 @@ public class CalendarService {
     private CalendarRepository calendarRepository;
     @Autowired
     private CalendarUpdatesRepository calendarUpdatesRepository;
+    @Autowired
+    private ToastService toastService;
 
     public CalendarRequest getCalendarForCurrentUser() {
         Calendar calendar = calendarRepository.findByUserId(userService.getCurrentUser().getId());
@@ -41,25 +44,31 @@ public class CalendarService {
         if (calendar == null) {
             Calendar newCalendar = new Calendar(userService.getCurrentUser().getId(), calendarRequest.getData());
             calendarRepository.save(newCalendar);
-            calendarUpdatesRepository.save(new CalendarUpdates(newCalendar, new Date()));
+            calendarUpdatesRepository.save(new CalendarUpdates(newCalendar, new Date().toString()));
         } else {
             calendar.setData(calendarRequest.getData());
             calendarRepository.save(calendar);
-            calendarUpdatesRepository.save(new CalendarUpdates(calendar, new Date()));
+            calendarUpdatesRepository.save(new CalendarUpdates(calendar, new Date().toString()));
         }
+        toastService.saveNotification(getLastUpdate());
         return true;
     }
 
     private Boolean checkCalendar(Calendar calendar, CalendarRequest calendarRequest) {
-        CalendarUpdates calendarUpdates = Optional.ofNullable(calendarUpdatesRepository.findFirstByCalendar(calendar)).orElse(new CalendarUpdates(calendar, new Date()));
-        Boolean isNewCalendar = calendarUpdates.getDate().getTime() == calendarRequest.getLastUpdate().getTime();
+        CalendarUpdates calendarUpdates = Optional.ofNullable(calendarUpdatesRepository.findFirstByCalendar(calendar)).orElse(new CalendarUpdates(calendar, new Date().toString()));
+        Boolean isNewCalendar = calendarUpdates.getDate().equals(calendarRequest.getLastUpdate());
         if (isNewCalendar) {
             calendarUpdatesRepository.delete(calendarUpdates);
         }
         return !isNewCalendar;
     }
 
-    public Boolean checkLastUpdate(Date date) {
-        return calendarUpdatesRepository.findAllByDate(date).stream().anyMatch(c -> c.getDate().getTime() == date.getTime());
+    public Boolean checkLastUpdate(String date) {
+        return calendarUpdatesRepository.findAllByDate(date).stream().anyMatch(c -> c.getDate().equals(date));
     }
+
+    public String getLastUpdate() {
+        return calendarUpdatesRepository.findFirstByCalendar(calendarRepository.findByUserId(userService.getCurrentUser().getId())).getDate();
+    }
+
 }

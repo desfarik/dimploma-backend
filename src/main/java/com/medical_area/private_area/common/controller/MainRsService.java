@@ -1,16 +1,14 @@
 package com.medical_area.private_area.common.controller;
 
-import com.medical_area.private_area.calendar.controllers.request.CalendarRequest;
+import com.medical_area.private_area.common.controller.request.ToastRequest;
+import com.medical_area.private_area.common.service.ToastService;
 import com.medical_area.private_area.common.service.UserService;
 import com.medical_area.private_area.profile.models.UserDetailsRequest;
 import com.medical_area.private_area.profile.service.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,11 +21,8 @@ public class MainRsService {
     private UserDetailsService userDetailsService;
     @Autowired
     private UserService userService;
-
-/*    @RequestMapping(value = "patients/get", method = RequestMethod.GET)
-    public CalendarRequest getCalendar() {
-        return calendarService.getCalendarForCurrentUser();
-    }*/
+    @Autowired
+    private ToastService toastService;
 
     @RequestMapping(value = "profile/get", method = RequestMethod.GET)
     public UserDetailsRequest getUserDetails() {
@@ -45,8 +40,8 @@ public class MainRsService {
         return userService.getAllPatients();
     }
 
-/*    @RequestMapping(value = "toast/check", method = RequestMethod.POST)
-    public Boolean checkLastUpdate(@Valid @RequestBody UserDetailsRequest userDetailsRequest) {
-        return calendarService.checkLastUpdate(date.getLastUpdate());
-    }*/
+    @RequestMapping(value = "toast/check/{calendarUpdate}", method = RequestMethod.GET)
+    public ToastRequest checkToast(@PathVariable String calendarUpdate) {
+        return toastService.check(calendarUpdate);
+    }
 }

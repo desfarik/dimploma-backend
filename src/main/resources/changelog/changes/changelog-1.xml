@@ -75,7 +75,7 @@
         </insert>
     </changeSet>
 
-    <changeSet id="21.20" author="dima">
+    <changeSet id="01.05.2018:21.43" author="dima">
         <createTable tableName="user_details">
             <column name="user_id" type="integer"/>
             <column name="details" type="text"/>

@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,9 +16,9 @@ public class CalendarRequest {
     @NotNull
     private String data;
     @NotNull
-    private Date lastUpdate;
+    private String lastUpdate;
 
-    public CalendarRequest(String data, Date lastUpdate) {
+    public CalendarRequest(String data, String lastUpdate) {
         this.data = data;
         this.lastUpdate = lastUpdate;
     }

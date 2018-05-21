@@ -11,7 +11,7 @@ public interface CalendarUpdatesRepository extends CrudRepository<CalendarUpdate
 
     CalendarUpdates findFirstByCalendar(Calendar calendarId);
 
-    Boolean existsByDate(Date date);
+    Boolean existsByDate(String date);
 
-    List<CalendarUpdates> findAllByDate(Date date);
+    List<CalendarUpdates> findAllByDate(String date);
 }

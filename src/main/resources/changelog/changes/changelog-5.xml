@@ -1,0 +1,62 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="dima" id="21.05.2018 18.47">
+        <addColumn tableName="dialogs">
+            <column name="is_doctor" type="boolean"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="dima" id="21.05.2018 21.47">
+        <dropColumn tableName="calendar_last_update">
+            <column name="date" type="date"/>
+        </dropColumn>
+        <addColumn tableName="calendar_last_update">
+            <column name="date" type="varchar(40)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="dima" id="21.05.2018 22.00">
+        <createTable tableName="notifications">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="identity" type="text"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="dima" author="21.05.2018 22.05">
+        <addUniqueConstraint columnNames="identity"
+                             deferrable="true"
+                             disabled="true"
+                             constraintName="identity_id"
+                             initiallyDeferred="true"
+                             schemaName="public"
+                             tableName="notifications"/>
+    </changeSet>
+
+    <changeSet author="dima" id="21.05.2018 22.22">
+        <addColumn tableName="notifications">
+            <column name="user_id" type="integer"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="dima" id="21.05.2018 22.25">
+        <dropUniqueConstraint constraintName="identity_id"
+                              schemaName="public"
+                              tableName="notifications"/>
+        <addUniqueConstraint tableName="notifications"
+                             columnNames="identity, user_id"
+                             deferrable="true"
+                             disabled="true"
+                             constraintName="identity_id_and_user_id"
+                             initiallyDeferred="true"
+                             schemaName="public"/>
+    </changeSet>
+</databaseChangeLog>
