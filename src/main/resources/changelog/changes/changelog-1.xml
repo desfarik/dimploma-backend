@@ -71,7 +71,7 @@
             <column name="phone" value="291812373"/>
             <column name="country_code" value="375"/>
             <column name="role" value="1"/>
-            <column name="id" value="10"/>
+            <column name="id" value="10001"/>
         </insert>
     </changeSet>
 
